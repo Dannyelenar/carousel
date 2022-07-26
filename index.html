@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=divice-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+   <section aria-label="Newest Photos">
+    <div class="carousel" data-carousel>
+        <button contenteditable="carousel-button prev" data-carousel-button="prev">&#8656;</button>
+        <button contenteditable="carousel-button next" data-carousel-button="next">&#8658;</button>
+     <ul data-slides="">   
+      <li class="stile" data-active>
+        <img src="https://i.postimg.cc/0yZ4KSg0/IMG-20161028-WA0032.jpg" alt="red phone box"> 
+      </li> 
+      <li class="stile">
+       <img src="https://i.postimg.cc/YSvLk43p/IMG-20201212-WA0019-London-Eye.jpg" alt="London Eye"> 
+      </li>  
+      <li class="stile">
+       <img src="https://i.postimg.cc/0NB7Lkms/20170819-090536lia.jpg" alt="Big Ben"> 
+      </li>
+     </ul>
+   </div> 
+   </section>
+</body>
+</html>
+
+<script>
+const buttons= document.querySelector("[data-carousel-button]")
+
+buttons.forEac(button =>{
+    button.addEventListener("click",() => {
+        const offset = button.dataset.carouselButton ==="next"? 1:-1
+        const slides = button
+          .closest("[data-carousel]")
+          .querySelector("[data-slides]")
+
+        const activeSlide = slides.querySelector("[data-active]")
+        let newIndex = [...slides.children].indexOf(activeSlide) + offset
+        if(newIndex < 0) newIndex = slides.children.length -1
+        if(newIndex >= slides.children.length) newIndex =0
+
+        slides.children [newIndex].dataset.active =true
+        delete activeSlide.dataset.active
+    })
+})  
+</script>
